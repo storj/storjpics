@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>{albumName}</title>
+    <title>{{ .AlbumName }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="../assets/album/js/ie/html5shiv.js"></script><![endif]-->
@@ -13,13 +13,19 @@
   <body>
     <div id="main">
       <header id="header">
-        <h1>{albumName}</h1>
+        <h1>{{ .AlbumName }}</h1>
         <p></p>
         <p></p>
         <p><a href="../">Back to albums</a></p>
       </header>
       <section id="thumbnails">
-{pictures}
+        {{- $albumName := .AlbumName -}}
+        {{- range .Pictures}}
+        <article>
+          <a class="thumbnail" href="../pics/resized/1200x750/{{ $albumName }}/{{ . }}" data-position="center"><img class="lazy" src="../assets/album/css/images/placeholder.png" data-original="../pics/resized/360x225/{{ $albumName }}/{{ . }}" width="360" height="225"/></a>
+          <p><a href="../pics/original/{{ $albumName }}/{{ . }}" download>High Resolution Download</a></p>
+        </article>
+        {{- end}}
       </section>
       <footer id="footer">
         <ul class="copyright">
