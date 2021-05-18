@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("https://fonts.googleapis.com/css?family=Inter:400,800");
 /*
 	Lens by HTML5 UP
 	html5up.net | @n33co
@@ -68,20 +68,20 @@ html, body {
 
 /* Type */
 html {
-  font-size: 16pt; }
+  font-size: 12pt; }
   @media screen and (max-width: 1680px) {
     html {
-      font-size: 12pt; } }
+      font-size: 11pt; } }
   @media screen and (max-width: 1280px) {
     html {
-      font-size: 11pt; } }
+      font-size: 10pt; } }
 
 body {
   background-color: #fff;
   color: #aaa; }
 
 body, input, select, textarea {
-  font-family: "Roboto", Helvetica, sans-serif;
+  font-family: "Inter", Helvetica, sans-serif;
   font-weight: 400;
   line-height: 1.65;
   font-size: 1em;
@@ -92,12 +92,11 @@ a {
   -webkit-transition: color 0.25s ease, border-bottom-color 0.25s ease;
   -ms-transition: color 0.25s ease, border-bottom-color 0.25s ease;
   transition: color 0.25s ease, border-bottom-color 0.25s ease;
-  border-bottom: dotted 1px;
   color: inherit;
   text-decoration: none; }
   a:hover {
     border-bottom-color: transparent;
-    color: #00D3B7; }
+    color: #FFF; }
 
 strong, b {
   font-weight: 400;
@@ -113,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.25;
   margin: 0 0 0.5em 0;
-  color: #555; }
+  color: #F3F5F8; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     color: inherit;
     text-decoration: none; }
@@ -214,8 +213,8 @@ button,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-    border-color: #00D3B7;
-    color: #00D3B7; }
+    border-color: #0047FF;
+    color: #0047FF; }
     input[type="submit"]:hover:active,
     input[type="reset"]:hover:active,
     input[type="button"]:hover:active,
@@ -540,7 +539,7 @@ dl {
   top: 0;
   width: 22.5em;
   height: 100%;
-  background: #fff;
+  background: #171717;
   outline: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -575,7 +574,7 @@ dl {
         right: -19em; } }
   @media screen and (max-width: 980px) {
     #main {
-      background: rgba(255, 255, 255, 0.925); }
+      background: #171717ad; }
       #main .toggle {
         display: block; } }
   @media screen and (max-width: 480px) {
@@ -599,10 +598,11 @@ dl {
 
 /* Header */
 #header {
-  padding: 3em 2.25em 1.75em 2.25em ; }
+  padding: 3em 2.25em 1em 2.25em;
+  text-align: center; }
   #header h1 {
-    font-size: 2.25em;
-    font-weight: 700; }
+    font-size: 2em;
+    font-weight: 800; }
 
 /* Footer */
 #footer {
@@ -631,7 +631,8 @@ dl {
   padding: 0 0.75em; }
   #thumbnails article {
     position: relative;
-    width: 50%;
+    width: 100%;
+    margin: 10px;
     background: #101010;
     outline: 0; }
     #thumbnails article .thumbnail {
@@ -639,11 +640,14 @@ dl {
       display: block;
       position: relative;
       border: 0;
-      outline: 0; }
+      outline: 0;
+      transition: transform 200ms ease-in-out; }
       #thumbnails article .thumbnail img {
         display: block;
         width: 100%;
         height: 100%; }
+      #thumbnails article .thumbnail:hover {
+        transform: scale(1.04); }
       #thumbnails article .thumbnail:before {
         -moz-pointer-events: none;
         -webkit-pointer-events: none;
@@ -659,7 +663,7 @@ dl {
         top: 0;
         width: 100%;
         height: 100%;
-        box-shadow: inset 0 0 0 2px #00D3B7, inset 0 0 0px 3px rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0px 3px rgba(0, 0, 0, 0.15);
         opacity: 0;
         z-index: 1; }
       #thumbnails article .thumbnail:focus:before {
@@ -767,7 +771,10 @@ dl {
       cursor: pointer;
       z-index: 1;
       right: 0;
-      background-position: calc(100% - 0.75em) 0.75em; }
+      background-position: calc(100% - 0.75em) 0.75em;
+      transition: transform 100ms ease-in-out; }
+        #viewer .inner .toggle:hover {
+          transform: scale(1.04); }
     #viewer .inner .nav-next,
     #viewer .inner .nav-previous {
       -webkit-tap-highlight-color: transparent;
@@ -786,9 +793,15 @@ dl {
       -webkit-transform: scaleX(-1);
       -ms-transform: scaleX(-1);
       transform: scaleX(-1);
-      left: 0; }
+      left: 0;
+      transition: all 200ms ease-in-out; }
+      #viewer .inner .nav-previous:hover {
+        left: -4px; }
     #viewer .inner .nav-next {
-      right: 0; }
+      right: 0;
+      transition: all 200ms ease-in-out;  }
+      #viewer .inner .nav-next:hover {
+        right: -4px; }
   #viewer .slide {
     -moz-transition: opacity 0.5s ease-in-out;
     -webkit-transition: opacity 0.5s ease-in-out;
