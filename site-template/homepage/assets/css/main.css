@@ -1,5 +1,5 @@
 @import url(font-awesome.min.css);
-@import url("https://fonts.googleapis.com/css?family=Inter:300,400,800");
+@import url("https://fonts.googleapis.com/css?family=Inter:300,800");
 /*
 	Multiverse by HTML5 UP
 	html5up.net | @n33co
@@ -134,12 +134,11 @@ a {
   -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  border-bottom: dotted 1px;
-  color: #34a58e;
+  color: #fff;
   text-decoration: none; }
   a:hover {
     border-bottom-color: transparent;
-    color: #34a58e !important; }
+    color: #376FFF !important; }
 
 strong, b {
   color: #ffffff;
@@ -882,32 +881,39 @@ body {
   -ms-user-select: none;
   -webkit-user-select: none;
   background: #171717;
-  bottom: -1em;
-  height: 5em;
-  left: 0;
   line-height: 4em;
-  padding: 0 1.5em;
-  position: fixed;
+  padding: 0 40px;
   user-select: none;
   width: 100%;
   z-index: 10002; }
   body.loading #header {
-    -moz-transform: translateY(4em);
-    -webkit-transform: translateY(4em);
-    -ms-transform: translateY(4em);
-    transform: translateY(4em); }
+    -moz-transform: translateY(-4em);
+    -webkit-transform: translateY(-4em);
+    -ms-transform: translateY(-4em);
+    transform: translateY(-4em); }
   #header h1 {
     color: #a0a0a1;
     display: inline-block;
-    font-size: 1em;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
     line-height: 1;
     margin: 0;
-    vertical-align: middle; }
+    vertical-align: middle;
+    text-align: right;
+    position: absolute;
+    right: 42px;
+    top: 32px; }
     #header h1 a {
       border: 0;
-      color: inherit; }
+      color: #fff; }
       #header h1 a:hover {
         color: inherit !important; }
+  #header .logo {
+    position: relative;
+    top: 8px;
+    color: #fff;
+  }
   #header nav {
     position: absolute;
     right: 0;
