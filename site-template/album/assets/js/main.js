@@ -774,4 +774,3 @@ var main = (function($) { var _ = {
 	},
 
 }; return _; })(jQuery); main.init();
-
