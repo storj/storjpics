@@ -246,7 +246,6 @@ var main = (function($) { var _ = {
 
 						// Calculate stuff.
 							var	diffX = _.$viewer.touchPosX - event.originalEvent.touches[0].pageX,
-
 								diffY = _.$viewer.touchPosY - event.originalEvent.touches[0].pageY;
 								boundary = 20,
 								delta = 50;
@@ -315,7 +314,6 @@ var main = (function($) { var _ = {
 
 								case 'right':
 									result = (diffY < boundary && diffY > (-1 * boundary)) && (diffX < (-1 * delta));
-
 									break;
 
 								default:
@@ -776,3 +774,4 @@ var main = (function($) { var _ = {
 	},
 
 }; return _; })(jQuery); main.init();
+
