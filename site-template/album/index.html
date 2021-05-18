@@ -22,7 +22,7 @@
         {{- range .Pictures}}
         <article>
           <a class="thumbnail" href="../pics/resized/1200x750/{{ $albumName }}/{{ . }}" data-position="center"><img class="lazy" src="../assets/album/css/images/placeholder.png" data-original="../pics/resized/360x225/{{ $albumName }}/{{ . }}" width="360" height="225"/></a>
-          <p><a href="../pics/original/{{ $albumName }}/{{ . }}" download>High Resolution Download</a></p>
+          <p><a href="../">Back to albums</a><a class="image-link-download" href="../pics/original/{{ $albumName }}/{{ . }}" download>Download Full Size</a><a href="https://www.storj.io/" target="_blank" class="image-link-hosted">Hosted on Storj DCS</a></p>
         </article>
         {{- end}}
       </section>
