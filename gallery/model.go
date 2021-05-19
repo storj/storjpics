@@ -3,6 +3,7 @@
 
 package gallery
 
+// Album represents one album in the gallery
 type Album struct {
 	Name            string
 	PictureFileName string

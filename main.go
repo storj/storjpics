@@ -28,7 +28,7 @@ func main() {
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			return generator.New(
 				website,
-				fs.NewBackend("/tmp/storjpics"),
+				fs.NewBackend("/tmp/storjpics"), // TODO: replace with Storj backend
 			).Generate(context.Background())
 		},
 	}

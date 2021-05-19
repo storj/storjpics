@@ -16,18 +16,25 @@ import (
 	"storj.io/storjpics/gallery"
 )
 
+// Generator is a photo gallery generator.
 type Generator struct {
 	assets  embed.FS
 	backend Backend
 }
 
+// Backend is a backend implementation to store the photo gallery assets.
 type Backend interface {
+	// GetAlbums returns all albums of the gallery.
 	GetAlbums(ctx context.Context) ([]gallery.Album, error)
+	// GetPictures returns all picture names in album.
 	GetPictures(ctx context.Context, album string) ([]string, error)
+	// CreateFile creates a new file for writing.
 	CreateFile(ctx context.Context, path string) (io.WriteCloser, error)
+	// OpenFile opens a file for reading.
 	OpenFile(ctx context.Context, path string) (io.ReadCloser, error)
 }
 
+// New creates a new generator.
 func New(assets embed.FS, backend Backend) *Generator {
 	return &Generator{
 		assets:  assets,
@@ -35,6 +42,7 @@ func New(assets embed.FS, backend Backend) *Generator {
 	}
 }
 
+// Generate generates all photo gallery assets from pictures available at /pics/original.
 func (generator *Generator) Generate(ctx context.Context) error {
 	err := generator.copyAssetsDir(ctx, "site-template/homepage/assets", "assets/homepage")
 	if err != nil {
