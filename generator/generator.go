@@ -214,6 +214,7 @@ func (generator *Generator) copyResizedImage(ctx context.Context, resized image.
 	if err != nil {
 		return err
 	}
+	defer writer.Close()
 
 	return imaging.Encode(writer, resized, format)
 }
