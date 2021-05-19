@@ -550,7 +550,7 @@ dl {
   #main .toggle {
     -webkit-tap-highlight-color: transparent;
     position: absolute;
-    top: 0;
+    top: 15px;
     width: 4em;
     height: 4em;
     background-image: url("images/close-small-alt.svg");
@@ -560,7 +560,7 @@ dl {
     display: none;
     z-index: 1;
     background-position: 0.5em 0.5em;
-    left: 0; }
+    right: 0; }
   body.fullscreen #main {
     visibility: hidden;
     right: -22.5em; }
