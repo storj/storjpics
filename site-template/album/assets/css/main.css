@@ -934,4 +934,45 @@ dl {
 .logo-wrapper {
   padding: 25px;
 }
+.social-wrapper {
+  position: relative;
+  bottom: 50px;
+  display: none;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  background: #000;
+  padding: 50px 20px 20px;
+  z-index: 1002;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+.st-btn {
+  display: inline-block !important;
+}
+
+.share-title {
+  position: absolute;
+  top: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.close-icon {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  width: 25px;
+  cursor: pointer;
+}
+.image-link-download, .social-share-btn {
+  margin-left: 30px;
+  cursor: pointer;
+}
+.image-link-hosted {
+  float: right;
+}
+.logo-wrapper {
+  padding: 25px;
+}
 /*# sourceMappingURL=main.css.map */
