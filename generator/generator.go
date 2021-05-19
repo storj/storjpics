@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"image"
 	"io"
+	"log"
 	"path"
 	"text/template"
 
@@ -54,6 +55,7 @@ func (generator *Generator) Generate(ctx context.Context) error {
 		return err
 	}
 
+	log.Print("Listing albums...")
 	albums, err := generator.backend.GetAlbums(ctx)
 	if err != nil {
 		return err
@@ -112,6 +114,8 @@ func (generator *Generator) Generate(ctx context.Context) error {
 }
 
 func (generator *Generator) copyHTMLFile(ctx context.Context, t *template.Template, data interface{}, dest string) error {
+	log.Printf("Copying HTML file %s...", dest)
+
 	file, err := generator.backend.CreateFile(ctx, dest)
 	if err != nil {
 		return err
@@ -122,6 +126,8 @@ func (generator *Generator) copyHTMLFile(ctx context.Context, t *template.Templa
 }
 
 func (generator *Generator) copyAssetsDir(ctx context.Context, assetsDir, destDir string) error {
+	log.Printf("Copying assets to %s...", destDir)
+
 	files, err := generator.assets.ReadDir(assetsDir)
 	if err != nil {
 		return err
@@ -146,6 +152,8 @@ func (generator *Generator) copyAssetsDir(ctx context.Context, assetsDir, destDi
 }
 
 func (generator *Generator) copyAssetsFile(ctx context.Context, src, dest string) error {
+	log.Printf("Copying asset file %s...", dest)
+
 	destFile, err := generator.backend.CreateFile(ctx, dest)
 	if err != nil {
 		return err
@@ -199,6 +207,8 @@ func (generator *Generator) createResizedImages(ctx context.Context, album galle
 
 func (generator *Generator) copyResizedImage(ctx context.Context, resized image.Image, format imaging.Format, album, picture string, width, height int) error {
 	imagePath := path.Join("pics", "resized", fmt.Sprintf("%dx%d", width, height), album, picture)
+
+	log.Printf("Copying image file to %s...", imagePath)
 
 	writer, err := generator.backend.CreateFile(ctx, imagePath)
 	if err != nil {

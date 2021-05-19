@@ -27,12 +27,12 @@ func NewBackend(rootDir string) *Backend {
 
 // GetAlbums returns all albums of the gallery.
 func (fs *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
+	var albums []gallery.Album
+
 	files, err := ioutil.ReadDir(filepath.Join(fs.rootDir, "pics", "original"))
 	if err != nil {
 		return nil, err
 	}
-
-	var albums []gallery.Album
 
 	for _, file := range files {
 		if file.IsDir() {
@@ -46,7 +46,7 @@ func (fs *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 				continue
 			}
 			albums = append(albums, gallery.Album{
-				Name:       file.Name(),
+				Name:       album,
 				CoverImage: pictures[0],
 				Pictures:   pictures,
 			})
@@ -58,12 +58,13 @@ func (fs *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 
 // GetPictures returns all picture names in album.
 func (fs *Backend) GetPictures(ctx context.Context, album string) ([]string, error) {
+	var pictures []string
+
 	files, err := ioutil.ReadDir(filepath.Join(fs.rootDir, "pics", "original", album))
 	if err != nil {
 		return nil, err
 	}
 
-	var pictures []string
 	for _, file := range files {
 		if !file.IsDir() {
 			pictures = append(pictures, file.Name())
