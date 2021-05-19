@@ -7,6 +7,7 @@ import (
 	"context"
 	"io"
 	"path"
+	"sort"
 
 	"storj.io/storjpics/gallery"
 	"storj.io/uplink"
@@ -67,6 +68,11 @@ func (storj *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 		return nil, iterator.Err()
 	}
 
+	// ensure alphabetical sort order
+	sort.Slice(albums, func(i, k int) bool {
+		return albums[i].Name < albums[k].Name
+	})
+
 	return albums, nil
 }
 
@@ -87,6 +93,9 @@ func (storj *Backend) GetPictures(ctx context.Context, album string) ([]string, 
 	if iterator.Err() != nil {
 		return nil, iterator.Err()
 	}
+
+	// ensure alphabetical sort order
+	sort.Strings(pictures)
 
 	return pictures, nil
 }
