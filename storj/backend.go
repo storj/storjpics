@@ -8,6 +8,7 @@ import (
 	"io"
 	"path"
 	"sort"
+	"strings"
 
 	"storj.io/storjpics/gallery"
 	"storj.io/uplink"
@@ -47,22 +48,28 @@ func (storj *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 
 	for iterator.Next() {
 		item := iterator.Item()
-		if item.IsPrefix {
-			album := path.Base(item.Key)
-			pictures, err := storj.GetPictures(ctx, album)
-			if err != nil {
-				return nil, err
-			}
-			// skip empty albums
-			if len(pictures) == 0 {
-				continue
-			}
-			albums = append(albums, gallery.Album{
-				Name:       album,
-				CoverImage: pictures[0],
-				Pictures:   pictures,
-			})
+
+		// ignore files
+		if !item.IsPrefix {
+			continue
 		}
+
+		album := path.Base(item.Key)
+		pictures, err := storj.GetPictures(ctx, album)
+		if err != nil {
+			return nil, err
+		}
+
+		// skip empty albums
+		if len(pictures) == 0 {
+			continue
+		}
+
+		albums = append(albums, gallery.Album{
+			Name:       album,
+			CoverImage: pictures[0],
+			Pictures:   pictures,
+		})
 	}
 	if iterator.Err() != nil {
 		return nil, iterator.Err()
@@ -86,9 +93,20 @@ func (storj *Backend) GetPictures(ctx context.Context, album string) ([]string, 
 
 	for iterator.Next() {
 		item := iterator.Item()
-		if !item.IsPrefix {
-			pictures = append(pictures, path.Base(item.Key))
+
+		// ignore subfolders
+		if item.IsPrefix {
+			continue
 		}
+
+		picture := path.Base(item.Key)
+
+		// ignore hidden files
+		if strings.HasPrefix(picture, ".") {
+			continue
+		}
+
+		pictures = append(pictures, picture)
 	}
 	if iterator.Err() != nil {
 		return nil, iterator.Err()

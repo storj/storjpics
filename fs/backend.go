@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"storj.io/storjpics/gallery"
 )
@@ -35,22 +36,27 @@ func (fs *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 	}
 
 	for _, file := range files {
-		if file.IsDir() {
-			album := file.Name()
-			pictures, err := fs.GetPictures(ctx, album)
-			if err != nil {
-				return nil, err
-			}
-			// skip empty albums
-			if len(pictures) == 0 {
-				continue
-			}
-			albums = append(albums, gallery.Album{
-				Name:       album,
-				CoverImage: pictures[0],
-				Pictures:   pictures,
-			})
+		// ignore files
+		if !file.IsDir() {
+			continue
 		}
+
+		album := file.Name()
+		pictures, err := fs.GetPictures(ctx, album)
+		if err != nil {
+			return nil, err
+		}
+
+		// skip empty albums
+		if len(pictures) == 0 {
+			continue
+		}
+
+		albums = append(albums, gallery.Album{
+			Name:       album,
+			CoverImage: pictures[0],
+			Pictures:   pictures,
+		})
 	}
 
 	return albums, nil
@@ -66,9 +72,17 @@ func (fs *Backend) GetPictures(ctx context.Context, album string) ([]string, err
 	}
 
 	for _, file := range files {
-		if !file.IsDir() {
-			pictures = append(pictures, file.Name())
+		// ignore subfolders
+		if file.IsDir() {
+			continue
 		}
+
+		// ignore hidden files
+		if strings.HasPrefix(file.Name(), ".") {
+			continue
+		}
+
+		pictures = append(pictures, file.Name())
 	}
 
 	return pictures, nil
