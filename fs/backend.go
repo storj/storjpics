@@ -46,9 +46,9 @@ func (fs *Backend) GetAlbums(ctx context.Context) ([]gallery.Album, error) {
 				continue
 			}
 			albums = append(albums, gallery.Album{
-				Name:            file.Name(),
-				PictureFileName: pictures[0],
-				Pictures:        pictures,
+				Name:       file.Name(),
+				CoverImage: pictures[0],
+				Pictures:   pictures,
 			})
 		}
 	}

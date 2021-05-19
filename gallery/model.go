@@ -5,7 +5,10 @@ package gallery
 
 // Album represents one album in the gallery
 type Album struct {
-	Name            string
-	PictureFileName string
-	Pictures        []string
+	// Name is the album's name.
+	Name string
+	// CoverImage is the file name of the picture to use as album's cover.
+	CoverImage string
+	// Pictures are the file names of all pictures in the album.
+	Pictures []string
 }
