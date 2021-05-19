@@ -18,7 +18,7 @@
       <div id="main">
         {{- range .Albums}}
         <article class="thumb">
-          <a href="{{ .Name }}/" class="image"><img src="./pics/resized/1200x750/{{ .Name }}/{{ .PictureFileName }}" alt="" /></a>
+          <a href="{{ .Name }}/" class="image"><img src="./pics/resized/1200x750/{{ .Name }}/{{ .CoverImage }}" alt="" /></a>
           <h2>{{ .Name }}</h2>
         </article>
         {{- end}}
