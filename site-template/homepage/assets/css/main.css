@@ -881,7 +881,7 @@ body {
   -ms-user-select: none;
   -webkit-user-select: none;
   background: #171717;
-  line-height: 4em;
+  height: 80px;
   padding: 0 40px;
   user-select: none;
   width: 100%;
@@ -911,7 +911,7 @@ body {
         color: inherit !important; }
   #header .logo {
     position: relative;
-    top: 8px;
+    top: 24px;
     color: #fff;
   }
   #header nav {
@@ -946,9 +946,6 @@ body {
             background-color: #242629; }
 
 @media screen and (max-width: 736px) {
-  body {
-    padding: 4em 0 0 0; }
-
   #header {
     -moz-transform: translateY(0);
     -webkit-transform: translateY(0);
